@@ -1,14 +1,13 @@
-
 function saveLink() {
     var linkInput = document.getElementById('linkInput').value;
     
-    if (linkInput.startsWith('https://') ^ linkInput.startsWith('www')) {
+    if (linkInput.startsWith('https://') || linkInput.startsWith('www')) {
         var shortLink = generateShortLink(linkInput);
         var links = JSON.parse(localStorage.getItem('savedLocalStg')) || [];
         links.push({ NameInLocalStr: linkInput, NameShortLocalStr: shortLink, id: new Date().getTime() });
         localStorage.setItem('savedLocalStg', JSON.stringify(links));
 
-        console.log(linkInput,shortLink);
+        console.log(linkInput, shortLink);
         
         displayLinks();
 
@@ -19,10 +18,10 @@ function saveLink() {
 }
 
 function generateShortLink(NameInLocalStr, length = 5) {
-    var characters = 'abcdefghijkl12346';
+    var characters = 'abcdefghijklmnopqrstuvwxyz1234567890';
     var randomString = '';
     for (var i = 0; i < length; i++) {
-        var randomIndex = Math.random() * characters.length;
+        var randomIndex = Math.floor(Math.random() * characters.length);
         randomString += characters.charAt(randomIndex);
     }
     return NameInLocalStr.substring(0, 25) + randomString;
@@ -58,6 +57,5 @@ function deleteLink(id) {
 }
 
 
-document.getElementById('timeSelect').addEventListener('change', displayLinks);
+setInterval(displayLinks, 1000);
 displayLinks();
-
