@@ -57,5 +57,5 @@ function deleteLink(id) {
 }
 
 
-setInterval(displayLinks, 1000);
-displayLinks();
+setInterval(displayLinks, 600);
+
