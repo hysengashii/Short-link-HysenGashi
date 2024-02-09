@@ -51,11 +51,18 @@ function displayLinks(){
 
 function deleteLink(id) {
     var links = JSON.parse(localStorage.getItem('savedLocalStg')) || [];
-    links = links.filter(linkObj => linkObj.id !== id);
-    localStorage.setItem('savedLocalStg', JSON.stringify(links));
-    displayLinks();
+    
+    var isConfirmed = window.confirm("Are you sure you want to delete this link?");
+    
+
+    if (isConfirmed) {
+
+        links = links.filter(linkObj => linkObj.id !== id);
+        localStorage.setItem('savedLocalStg', JSON.stringify(links));
+        displayLinks();
+    }
 }
 
 
-setInterval(displayLinks, 600);
+setInterval(displayLinks, 5000);
 
