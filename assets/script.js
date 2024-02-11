@@ -57,12 +57,13 @@ function deleteLink(id) {
 
     if (isConfirmed) {
 
-        links = links.filter(linkObj => linkObj.id !== id);
-        localStorage.setItem('savedLocalStg', JSON.stringify(links));
+        saveLocal = links.filter(linkObj => linkObj.id !== id);
+        console.log(saveLocal);
+        localStorage.setItem('savedLocalStg', JSON.stringify(saveLocal));
         displayLinks();
     }
 }
 
 
-setInterval(displayLinks, 5000);
+setInterval(displayLinks, 1000); 
 
